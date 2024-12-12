@@ -14,13 +14,16 @@ const cohere = new CohereClientV2({
     token: COHERE_API_KEY,
   });
 
-app.get('/', async (req, res) => {
-
+app.post('/api', async (req, res) => {
+    console.log( req.body.text, req.body.language);
     try {
 
         const msg = await cohere.chat({
             model: "command-r-plus",
-            messages: [{ role: "user", content: "Hello, Cohere !" }],
+            messages: [
+                { role: "user", content: req.body.text },
+                { role: "system", content: req.body.language },
+            ],
           });
 
         res.json({ msg });
