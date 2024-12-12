@@ -23,6 +23,7 @@ app.post('/api', async (req, res) => {
             messages: [
                 { role: "user", content: req.body.text },
                 { role: "system", content: req.body.language },
+                { role: "assistant", content: "Help Improve Language Speaking"},
             ],
           });
 
