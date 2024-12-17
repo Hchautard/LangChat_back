@@ -1,6 +1,7 @@
 import express, { json } from 'express';
 import cors from 'cors';
 import { CohereClientV2 } from 'cohere-ai';
+import 'dotenv/config';
 const app = express();
 
 app.use(json());
@@ -8,10 +9,8 @@ app.use(json());
 // No cors needed
 app.use(cors());
 
-const COHERE_API_KEY = "j6Evj0Huzg5AIEhqFsZAgkmwmurdG6jsbDoYDor5"
-
 const cohere = new CohereClientV2({
-    token: COHERE_API_KEY,
+    token: process.env.COHERE_API_KEY
   });
 
 app.post('/api', async (req, res) => {
